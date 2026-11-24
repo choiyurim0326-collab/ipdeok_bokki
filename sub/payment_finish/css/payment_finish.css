@@ -1,0 +1,168 @@
+
+/* 기본 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* 전체 페이지 */
+.complete-page {
+  width: 100%;
+  max-width: 500px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+
+/* HEADER */
+.header {
+  width: 100%;
+  height: 70px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+}
+
+/* LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  display: block;
+  width: auto;
+  max-width: 120px;
+  max-height: 40px;
+  object-fit: contain;
+}
+
+/* 햄버거 버튼 */
+.menu-button {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+}
+
+.menu-button svg {
+  width: 25px;
+  height: 25px;
+  stroke-width: 1.5;
+}
+
+/* 메인 이미지 영역 */
+.main-image {
+  width: 100%;
+  aspect-ratio: 195 / 170;
+  background-color: #888888;
+}
+
+/* 결제 완료 콘텐츠 */
+.complete-content {
+  width: 100%;
+  padding: 16px;
+  background-color: #ffffff;
+}
+
+/* 페이지 제목 */
+.page-title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #000000;
+}
+
+/* 메뉴 오버레이 */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 슬라이드 메뉴 */
+.slide-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 101;
+  width: min(66.6667vw, 333px);
+  height: 100vh;
+  padding: 24px;
+  background-color: #ffffff;
+  transform: translateX(110%);
+  transition: transform 0.3s ease;
+}
+
+.slide-menu.active {
+  transform: translateX(0);
+}
+
+/* 메뉴 닫기 버튼 */
+.menu-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-left: auto;
+}
+
+.menu-close svg {
+  width: 25px;
+  height: 25px;
+}
+
+/* 메뉴 리스트 */
+.menu-list {
+  list-style: none;
+  margin-top: 40px;
+}
+
+.menu-list li {
+  border-bottom: 1px solid #eeeeee;
+}
+
+.menu-list a {
+  display: block;
+  padding: 18px 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* 메뉴 열림 상태 */
+body.menu-open {
+  overflow: hidden;
+}

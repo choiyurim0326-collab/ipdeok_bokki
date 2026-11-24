@@ -1,0 +1,183 @@
+
+/* 기본 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* 전체 페이지 */
+.page {
+  width: 100%;
+  max-width: 500px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0 20px;
+  background-color: #ffffff;
+}
+
+/* HEADER */
+.header {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  display: block;
+  width: auto;
+  max-width: 120px;
+  max-height: 40px;
+  object-fit: contain;
+}
+
+.menu-button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+}
+
+.menu-button svg {
+  width: 25px;
+  height: 25px;
+  stroke-width: 1.8;
+}
+
+/* MENU SECTION */
+.menu-section {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+/* 2열 그리드 */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 16px;
+  row-gap: 24px;
+}
+
+/* 메뉴 카드 */
+.menu-card {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+/* 메뉴 이미지 영역 */
+.menu-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #eeeeee;
+}
+
+/* 메뉴 이름 */
+.menu-name {
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #000000;
+}
+
+/* MENU OVERLAY */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* SLIDE MENU */
+.slide-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 101;
+  width: min(66.6667vw, 333px);
+  height: 100vh;
+  padding: 24px;
+  background-color: #ffffff;
+  transform: translateX(110%);
+  transition: transform 0.3s ease;
+}
+
+.slide-menu.active {
+  transform: translateX(0);
+}
+
+/* 닫기 버튼 */
+.menu-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-left: auto;
+  color: #000000;
+}
+
+.menu-close svg {
+  width: 25px;
+  height: 25px;
+}
+
+/* 메뉴 링크 */
+.menu-list {
+  list-style: none;
+  margin-top: 40px;
+}
+
+.menu-list li {
+  border-bottom: 1px solid #eeeeee;
+}
+
+.menu-list a {
+  display: block;
+  padding: 18px 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000000;
+}
+
+/* 메뉴가 열렸을 때 배경 스크롤 방지 */
+body.menu-open {
+  overflow: hidden;
+}
