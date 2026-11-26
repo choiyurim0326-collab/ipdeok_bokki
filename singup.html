@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입 | 입덕볶이</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="auth-body">
+
+  <main class="auth-page">
+    <header class="auth-header">
+      <a href="./index.html">
+        <img src="./img/logo.png" alt="입덕볶이">
+      </a>
+      <a href="./login.html" class="auth-home">로그인</a>
+    </header>
+
+    <section class="auth-container">
+      <div class="auth-visual">
+        <p class="auth-visual__eyebrow">IPDEOK BOKKI</p>
+        <h1><span>입덕볶이</span>의<br>새로운 가족이 되어주세요!</h1>
+        <p>회원가입하고 맛있는 하루를 시작해요.</p>
+        <img src="./img/recommend-best.jpg" alt="입덕볶이 대표 메뉴">
+      </div>
+
+      <div class="auth-form-area">
+        <h2>회원가입</h2>
+        <p class="auth-description">입덕볶이 회원이 되어보세요!</p>
+
+        <form id="signupForm">
+          <label class="auth-label" for="signupName">이름</label>
+          <input
+            type="text"
+            id="signupName"
+            class="auth-input"
+            placeholder="이름을 입력해주세요"
+            required
+          >
+
+          <label class="auth-label" for="signupEmail">이메일</label>
+          <input
+            type="email"
+            id="signupEmail"
+            class="auth-input"
+            placeholder="이메일을 입력해주세요"
+            required
+          >
+
+          <label class="auth-label" for="signupPassword">비밀번호</label>
+          <input
+            type="password"
+            id="signupPassword"
+            class="auth-input"
+            placeholder="비밀번호를 4자 이상 입력해주세요"
+            minlength="4"
+            required
+          >
+
+          <label class="auth-label" for="signupPasswordCheck">비밀번호 확인</label>
+          <input
+            type="password"
+            id="signupPasswordCheck"
+            class="auth-input"
+            placeholder="비밀번호를 다시 입력해주세요"
+            required
+          >
+
+          <p id="signupMessage" class="auth-message" aria-live="polite"></p>
+
+          <button type="submit" class="auth-submit">회원가입</button>
+        </form>
+
+        <p class="auth-signup">
+          이미 회원이신가요?
+          <a href="./login.html">로그인</a>
+        </p>
+      </div>
+    </section>
+
+    <footer class="auth-footer">
+      © 2026 입덕볶이. All rights reserved.
+    </footer>
+  </main>
+
+  <script src="./js/auth.js"></script>
+</body>
+</html>

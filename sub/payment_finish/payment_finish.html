@@ -1,82 +1,334 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/payment_finish.css">
-</head>
-<body>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>입덕볶이 | 결제 완료</title>
+  <link rel="stylesheet" href="./css/payment_finish.css">
 
-  <title>결제 완료 페이지</title>
-
-  <!-- Noto Sans KR -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="complete.css">
-
-  <!-- Lucide -->
   <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .header {
+      position: relative;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: 70px;
+      padding: 0 20px;
+      background: #fff;
+    }
+
+    .header__logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .header__logo img {
+      display: block;
+      max-width: 120px;
+      max-height: 32px;
+      object-fit: contain;
+    }
+
+    .header__menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: transparent;
+      color: #442014;
+      cursor: pointer;
+    }
+
+    .header__menu svg {
+      width: 27px;
+      height: 27px;
+      stroke-width: 2;
+    }
+
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0, 0, 0, 0.45);
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .slide-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 300;
+      width: 280px;
+      max-width: 80%;
+      height: 100vh;
+      padding: 25px 20px;
+      background: #fff8f0;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .slide-menu.active {
+      transform: translateX(0);
+    }
+
+    .slide-menu__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 25px;
+      border-bottom: 1px solid #e8d8ca;
+    }
+
+    .slide-menu__header h2 {
+      margin: 0;
+      color: #442014;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .slide-menu__close {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 35px;
+      height: 35px;
+      border: none;
+      background: transparent;
+      color: #442014;
+      cursor: pointer;
+    }
+
+    .slide-menu__close svg {
+      width: 25px;
+      height: 25px;
+    }
+
+    .slide-menu__auth {
+      padding: 20px 5px;
+      border-bottom: 1px solid #e8d8ca;
+    }
+
+    .slide-menu__auth-status {
+      margin-bottom: 8px;
+      color: #8b7568;
+      font-size: 13px;
+    }
+
+    .slide-menu__auth-name {
+      margin-bottom: 12px;
+      color: #442014;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .slide-menu__auth-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .slide-menu__auth-actions a,
+    .slide-menu__auth-actions button {
+      min-width: 75px;
+      padding: 8px 14px;
+      border: 1px solid #442014;
+      border-radius: 5px;
+      background: #442014;
+      color: #fff;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .slide-menu__list {
+      padding-top: 20px;
+      list-style: none;
+    }
+
+    .slide-menu__list li {
+      border-bottom: 1px solid #eadfd5;
+    }
+
+    .slide-menu__list a {
+      display: block;
+      padding: 18px 5px;
+      color: #442014;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="finish-page">
 
-  <div class="complete-page">
-
-    <!-- HEADER -->
     <header class="header">
-      <a href="index.html" class="logo">
-        <img src="./img/logo.png" alt="LOGO">
+      <a href="../../index.html" class="header__logo">
+        <img src="../../img/logo.png" alt="입덕볶이">
       </a>
 
-      <button class="menu-button" id="menuOpen" aria-label="메뉴 열기">
+      <button type="button" class="header__menu" id="menuOpen"
+        aria-label="메뉴 열기" aria-expanded="false">
         <i data-lucide="menu"></i>
       </button>
     </header>
 
-    <!-- MAIN -->
+    <!-- 메뉴 배경 -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- 슬라이드 메뉴 -->
+    <nav class="slide-menu" id="slideMenu">
+
+      <div class="slide-menu__header">
+        <h2>MENU</h2>
+        <button type="button" class="slide-menu__close" id="menuClose"
+          aria-label="메뉴 닫기">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <!-- 로그인 상태 -->
+      <div class="slide-menu__auth">
+        <p class="slide-menu__auth-status" id="authStatus">로그인이 필요합니다.</p>
+        <p class="slide-menu__auth-name" id="authName" style="display: none;"></p>
+
+        <div class="slide-menu__auth-actions">
+          <a href="../../login.html" id="loginLink">로그인</a>
+          <button type="button" id="logoutButton" style="display: none;">로그아웃</button>
+        </div>
+      </div>
+
+      <ul class="slide-menu__list">
+        <li><a href="../../index.html">메인 페이지</a></li>
+        <li><a href="../lists/lists.html">전체 메뉴</a></li>
+        <li><a href="../detail/detail.html">메뉴 상세</a></li>
+      </ul>
+    </nav>
+
     <main>
-      <div class="main-image"></div>
-
-      <!-- PAGE TITLE -->
-      <section class="complete-content">
-        <p class="page-title">결제 완료 페이지</p>
+      <section class="complete-message">
+        <div class="check-icon">✓</div>
+        <h1>주문이 완료되었습니다!</h1>
+        <p>입덕볶이를 주문해 주셔서 감사합니다.</p>
       </section>
-    </main>
 
+      <section class="finish-section">
+        <h2>주문 내역</h2>
+
+        <div class="finish-row">
+          <span>주문 메뉴</span>
+          <strong id="menuName">-</strong>
+        </div>
+        <div class="finish-row">
+          <span>수량</span>
+          <strong id="menuQuantity">-</strong>
+        </div>
+        <div class="finish-row">
+          <span>맵기</span>
+          <strong id="spicyLevel">-</strong>
+        </div>
+        <div class="finish-row">
+          <span>추가 옵션</span>
+          <strong id="sideOptions">-</strong>
+        </div>
+      </section>
+
+      <section class="finish-section">
+        <h2>결제 정보</h2>
+
+        <div class="finish-row">
+          <span>결제수단</span>
+          <strong id="paymentMethod">-</strong>
+        </div>
+        <div class="finish-total">
+          <strong>결제 금액</strong>
+          <strong id="totalPrice">0원</strong>
+        </div>
+      </section>
+
+      <div class="finish-buttons">
+        <a href="../../index.html" class="home-btn">메인 페이지로 이동</a>
+        <a href="../lists/lists.html" class="list-btn">전체 메뉴 보기</a>
+      </div>
+
+      <p class="finish-notice">
+        본 화면은 결제 과정 시연을 위한 완료 화면입니다.
+      </p>
+    </main>
   </div>
 
-  <!-- MENU OVERLAY -->
-  <div class="menu-overlay" id="menuOverlay"></div>
-
-  <!-- SLIDE MENU -->
-  <nav class="slide-menu" id="slideMenu">
-
-    <button class="menu-close" id="menuClose" aria-label="메뉴 닫기">
-      <i data-lucide="x"></i>
-    </button>
-
-    <ul class="menu-list">
-      <li><a href="index.html">메뉴 리스트</a></li>
-      <li><a href="detail.html">상세페이지</a></li>
-      <li><a href="payment.html">결제페이지</a></li>
-      <li><a href="complete.html">결제 완료</a></li>
-    </ul>
-
-  </nav>
-
-  <!-- JAVASCRIPT -->
   <script>
+    // 아이콘
     lucide.createIcons();
 
+    // 주문 정보 표시
+    const order = JSON.parse(localStorage.getItem("ipdeokOrder") || "null");
+
+    const money = (value) =>
+      Number(value || 0).toLocaleString("ko-KR") + "원";
+
+    if (!order || !order.paymentMethod) {
+      alert("결제 정보가 없습니다. 결제 페이지로 이동합니다.");
+      location.href = "../payment/payment.html";
+    } else {
+      document.getElementById("menuName").textContent =
+        order.menuName || "주문 메뉴";
+
+      document.getElementById("menuQuantity").textContent =
+        (Number(order.menuQuantity) || 1) + "개";
+
+      document.getElementById("spicyLevel").textContent =
+        order.spicyLevel || "해당 없음";
+
+      const options = [];
+
+      if (Number(order.cheeseCount) > 0) {
+        options.push("치즈 " + order.cheeseCount + "개");
+      }
+
+      if (Number(order.friedCount) > 0) {
+        options.push("튀김 " + order.friedCount + "개");
+      }
+
+      document.getElementById("sideOptions").textContent =
+        options.length ? options.join(" · ") : "추가 옵션 없음";
+
+      document.getElementById("paymentMethod").textContent =
+        order.paymentMethod;
+
+      document.getElementById("totalPrice").textContent =
+        money(order.totalPrice);
+    }
+
+    // 슬라이드 메뉴
     const menuOpen = document.getElementById("menuOpen");
     const menuClose = document.getElementById("menuClose");
     const menuOverlay = document.getElementById("menuOverlay");
@@ -86,28 +338,64 @@
       slideMenu.classList.add("active");
       menuOverlay.classList.add("active");
       document.body.classList.add("menu-open");
+      menuOpen.setAttribute("aria-expanded", "true");
     }
 
-    function closeMenu() {
+    function hideMenu() {
       slideMenu.classList.remove("active");
       menuOverlay.classList.remove("active");
       document.body.classList.remove("menu-open");
+      menuOpen.setAttribute("aria-expanded", "false");
     }
 
     menuOpen.addEventListener("click", openMenu);
-    menuClose.addEventListener("click", closeMenu);
-    menuOverlay.addEventListener("click", closeMenu);
+    menuClose.addEventListener("click", hideMenu);
+    menuOverlay.addEventListener("click", hideMenu);
+
+    document.querySelectorAll(".slide-menu__list a").forEach(function(link) {
+      link.addEventListener("click", hideMenu);
+    });
 
     document.addEventListener("keydown", function(event) {
       if (event.key === "Escape") {
-        closeMenu();
+        hideMenu();
       }
     });
+
+    // 로그인 상태 표시
+    function updateAuthMenu() {
+      const currentUser = JSON.parse(
+        localStorage.getItem("currentUser") || "null"
+      );
+
+      const authStatus = document.getElementById("authStatus");
+      const authName = document.getElementById("authName");
+      const loginLink = document.getElementById("loginLink");
+      const logoutButton = document.getElementById("logoutButton");
+
+      if (currentUser) {
+        authStatus.textContent = "로그인 상태입니다.";
+        authName.textContent = (currentUser.name || "회원") + "님 환영합니다.";
+        authName.style.display = "block";
+        loginLink.style.display = "none";
+        logoutButton.style.display = "inline-block";
+      } else {
+        authStatus.textContent = "로그인이 필요합니다.";
+        authName.style.display = "none";
+        loginLink.style.display = "inline-block";
+        logoutButton.style.display = "none";
+      }
+    }
+
+    // 로그아웃
+    document.getElementById("logoutButton").addEventListener("click", function() {
+      localStorage.removeItem("currentUser");
+      updateAuthMenu();
+      hideMenu();
+      alert("로그아웃되었습니다.");
+    });
+
+    updateAuthMenu();
   </script>
-
-</body>
-</html>
-
-    
 </body>
 </html>

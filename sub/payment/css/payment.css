@@ -1,5 +1,4 @@
 
-/* 기본 설정 */
 * {
   margin: 0;
   padding: 0;
@@ -7,162 +6,324 @@
 }
 
 body {
-  font-family: 'Noto Sans KR', sans-serif;
-  background-color: #ffffff;
-  color: #000000;
+  font-family: "Noto Sans KR", sans-serif;
+  color: #222;
+  background: #f7f7f7;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  font-family: inherit;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-/* 전체 페이지 */
 .payment-page {
   width: 100%;
   max-width: 500px;
   min-height: 100vh;
   margin: 0 auto;
-  background-color: #ffffff;
+  padding: 0 20px 35px;
+  background: #fff;
 }
 
-/* HEADER */
 .header {
-  width: 100%;
-  height: 70px;
-  padding: 0 16px;
+  height: 65px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #ffffff;
+  border-bottom: 1px solid #eee;
 }
 
-/* LOGO */
-.logo {
-  font-size: 14px;
-  font-weight: 400;
-  color: #000000;
+.logo img {
+  display: block;
+  width: 115px;
+  height: auto;
 }
 
-/* 햄버거 버튼 */
-.menu-button {
+.menu-btn {
   width: 28px;
   height: 28px;
+  border: 0;
+  background: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.menu-btn span {
+  display: block;
+  width: 23px;
+  height: 2px;
+  background: #222;
+}
+
+.page-heading {
+  padding: 28px 0 22px;
+}
+
+.page-heading h1 {
+  font-size: 23px;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+.page-heading p {
+  color: #888;
+  font-size: 13px;
+}
+
+.payment-section {
+  padding: 20px 0;
+  border-top: 1px solid #eee;
+}
+
+.payment-section h2 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 17px;
+}
+
+.order-product {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.product-image {
+  width: 88px;
+  height: 88px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #f4f4f4;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-info h3 {
+  font-size: 15px;
+  margin-bottom: 7px;
+}
+
+.product-info p {
+  color: #888;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.product-info strong {
+  display: block;
+  margin-top: 7px;
+  font-size: 14px;
+}
+
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.payment-method {
+  min-height: 72px;
+  padding: 13px;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.payment-method.selected {
+  border: 1.5px solid #d94a32;
+  background: #fffaf9;
+}
+
+.payment-method input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.method-icon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #000000;
+  font-size: 18px;
+  font-weight: 700;
 }
 
-.menu-button svg {
-  width: 25px;
-  height: 25px;
-  stroke-width: 1.5;
+.card-icon {
+  color: #d94a32;
+  background: #fff0ec;
 }
 
-/* 메인 이미지 영역 */
-.main-image {
-  width: 100%;
-  aspect-ratio: 195 / 170;
-  background-color: #888888;
+.naver-icon {
+  color: #fff;
+  background: #03c75a;
 }
 
-/* 결제 페이지 콘텐츠 */
-.payment-content {
-  width: 100%;
-  padding: 16px;
-  background-color: #ffffff;
+.kakao-icon {
+  color: #191919;
+  background: #fee500;
 }
 
-/* 페이지 제목 */
-.page-title {
+.bank-icon {
+  color: #555;
+  background: #eee;
+}
+
+.method-name {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.method-name strong {
   font-size: 14px;
+  font-weight: 600;
+}
+
+.method-name small {
+  color: #999;
+  font-size: 11px;
+}
+
+.radio-mark {
+  width: 19px;
+  height: 19px;
+  border: 1.5px solid #ccc;
+  border-radius: 50%;
+  position: relative;
+}
+
+.payment-method.selected .radio-mark {
+  border-color: #d94a32;
+}
+
+.payment-method.selected .radio-mark::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  border-radius: 50%;
+  background: #d94a32;
+}
+
+.price-section {
+  padding-bottom: 22px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 13px 0;
+  font-size: 13px;
+}
+
+.price-row span {
+  color: #888;
+}
+
+.price-row strong {
   font-weight: 500;
+}
+
+.total-price {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+}
+
+.total-price strong:last-child {
+  color: #d94a32;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.pay-btn {
+  width: 100%;
+  height: 54px;
+  border: 0;
+  border-radius: 9px;
+  color: #fff;
+  background: #d94a32;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pay-btn:active {
+  background: #bd3925;
+}
+
+.payment-notice {
+  margin-top: 12px;
+  color: #aaa;
+  font-size: 11px;
+  text-align: center;
   line-height: 1.5;
-  color: #000000;
-}
-
-/* 메뉴 오버레이 */
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  background-color: rgba(0, 0, 0, 0.45);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.menu-overlay.active {
-  opacity: 1;
-  visibility: visible;
 }
 
 /* 슬라이드 메뉴 */
 .slide-menu {
   position: fixed;
+  z-index: 1001;
   top: 0;
-  right: 0;
-  z-index: 101;
-  width: min(66.6667vw, 333px);
+  right: -280px;
+  width: min(280px, 80%);
   height: 100vh;
-  padding: 24px;
-  background-color: #ffffff;
-  transform: translateX(110%);
-  transition: transform 0.3s ease;
+  padding: 70px 25px 25px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  transition: right 0.3s ease;
 }
 
 .slide-menu.active {
-  transform: translateX(0);
+  right: 0;
 }
 
-/* 메뉴 닫기 버튼 */
-.menu-close {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  margin-left: auto;
-}
-
-.menu-close svg {
-  width: 25px;
-  height: 25px;
-}
-
-/* 메뉴 리스트 */
-.menu-list {
-  list-style: none;
-  margin-top: 40px;
-}
-
-.menu-list li {
-  border-bottom: 1px solid #eeeeee;
-}
-
-.menu-list a {
-  display: block;
-  padding: 18px 0;
+.slide-menu a {
+  color: #222;
   font-size: 16px;
-  font-weight: 500;
+  text-decoration: none;
 }
 
-/* 메뉴 열림 상태 */
-body.menu-open {
-  overflow: hidden;
+.close-btn {
+  position: absolute;
+  top: 17px;
+  right: 20px;
+  border: 0;
+  background: none;
+  font-size: 32px;
+  cursor: pointer;
 }
-.logo img {
-  display: block;
-  width: auto;
-  max-width: 120px;
-  max-height: 40px;
-  object-fit: contain;
+
+.menu-overlay {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
 }

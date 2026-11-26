@@ -1,5 +1,4 @@
 
-/* 기본 설정 */
 * {
   margin: 0;
   padding: 0;
@@ -7,162 +6,212 @@
 }
 
 body {
-  font-family: 'Noto Sans KR', sans-serif;
-  background-color: #ffffff;
-  color: #000000;
+  font-family: "Noto Sans KR", sans-serif;
+  color: #222;
+  background: #f7f7f7;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  font-family: inherit;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-/* 전체 페이지 */
-.complete-page {
+.finish-page {
   width: 100%;
   max-width: 500px;
   min-height: 100vh;
   margin: 0 auto;
-  background-color: #ffffff;
+  padding: 0 20px 35px;
+  background: #fff;
 }
 
-/* HEADER */
 .header {
-  width: 100%;
-  height: 70px;
-  padding: 0 16px;
+  height: 65px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #ffffff;
-}
-
-/* LOGO */
-.logo {
-  display: flex;
-  align-items: center;
+  border-bottom: 1px solid #eee;
 }
 
 .logo img {
   display: block;
-  width: auto;
-  max-width: 120px;
-  max-height: 40px;
-  object-fit: contain;
+  width: 115px;
+  height: auto;
 }
 
-/* 햄버거 버튼 */
-.menu-button {
+.menu-btn {
   width: 28px;
   height: 28px;
+  border: 0;
+  background: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.menu-btn span {
+  display: block;
+  width: 23px;
+  height: 2px;
+  background: #222;
+}
+
+.complete-message {
+  padding: 55px 0 38px;
+  text-align: center;
+}
+
+.check-icon {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #000000;
+  color: #d94a32;
+  background: #fff0ec;
+  font-size: 42px;
+  font-weight: 600;
 }
 
-.menu-button svg {
-  width: 25px;
-  height: 25px;
-  stroke-width: 1.5;
+.complete-message h1 {
+  margin-bottom: 10px;
+  font-size: 21px;
+  font-weight: 700;
 }
 
-/* 메인 이미지 영역 */
-.main-image {
-  width: 100%;
-  aspect-ratio: 195 / 170;
-  background-color: #888888;
+.complete-message p {
+  color: #888;
+  font-size: 13px;
 }
 
-/* 결제 완료 콘텐츠 */
-.complete-content {
-  width: 100%;
-  padding: 16px;
-  background-color: #ffffff;
+.finish-section {
+  padding: 22px 0;
+  border-top: 1px solid #eee;
 }
 
-/* 페이지 제목 */
-.page-title {
-  font-size: 14px;
+.finish-section h2 {
+  margin-bottom: 20px;
+  font-size: 17px;
+}
+
+.finish-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  margin: 16px 0;
+  font-size: 13px;
+}
+
+.finish-row span {
+  flex-shrink: 0;
+  color: #888;
+}
+
+.finish-row strong {
+  text-align: right;
   font-weight: 500;
-  line-height: 1.5;
-  color: #000000;
 }
 
-/* 메뉴 오버레이 */
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  background-color: rgba(0, 0, 0, 0.45);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+.finish-total {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
 }
 
-.menu-overlay.active {
-  opacity: 1;
-  visibility: visible;
+.finish-total strong:last-child {
+  color: #d94a32;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.finish-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.home-btn,
+.list-btn {
+  width: 100%;
+  min-height: 52px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.home-btn {
+  color: #fff;
+  background: #d94a32;
+}
+
+.list-btn {
+  color: #444;
+  background: #f3f3f3;
+}
+
+.finish-notice {
+  margin-top: 18px;
+  color: #aaa;
+  font-size: 11px;
+  text-align: center;
 }
 
 /* 슬라이드 메뉴 */
 .slide-menu {
   position: fixed;
+  z-index: 1001;
   top: 0;
-  right: 0;
-  z-index: 101;
-  width: min(66.6667vw, 333px);
+  right: -280px;
+  width: min(280px, 80%);
   height: 100vh;
-  padding: 24px;
-  background-color: #ffffff;
-  transform: translateX(110%);
-  transition: transform 0.3s ease;
+  padding: 70px 25px 25px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  transition: right 0.3s ease;
 }
 
 .slide-menu.active {
-  transform: translateX(0);
+  right: 0;
 }
 
-/* 메뉴 닫기 버튼 */
-.menu-close {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  margin-left: auto;
-}
-
-.menu-close svg {
-  width: 25px;
-  height: 25px;
-}
-
-/* 메뉴 리스트 */
-.menu-list {
-  list-style: none;
-  margin-top: 40px;
-}
-
-.menu-list li {
-  border-bottom: 1px solid #eeeeee;
-}
-
-.menu-list a {
-  display: block;
-  padding: 18px 0;
+.slide-menu a {
+  color: #222;
   font-size: 16px;
-  font-weight: 500;
+  text-decoration: none;
 }
 
-/* 메뉴 열림 상태 */
-body.menu-open {
-  overflow: hidden;
+.close-btn {
+  position: absolute;
+  top: 17px;
+  right: 20px;
+  border: 0;
+  background: none;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.menu-overlay {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
 }

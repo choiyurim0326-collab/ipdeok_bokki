@@ -9,13 +9,58 @@
   <!-- Noto Sans KR -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="./css/style.css">
+
+  <!-- 메뉴 로그인 영역 스타일 -->
+  <style>
+    .slide-menu__auth {
+      padding: 20px 5px;
+      border-bottom: 1px solid #e8d8ca;
+    }
+
+    .slide-menu__auth-status {
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: #8b7568;
+    }
+
+    .slide-menu__auth-name {
+      margin-bottom: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #442014;
+    }
+
+    .slide-menu__auth-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .slide-menu__auth-actions a,
+    .slide-menu__auth-actions button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 75px;
+      padding: 8px 14px;
+      border: 1px solid #442014;
+      border-radius: 5px;
+      background: #442014;
+      color: #fff;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
@@ -37,6 +82,7 @@
   <div class="menu-overlay" id="menuOverlay"></div>
 
   <nav class="slide-menu" id="slideMenu" aria-label="전체 메뉴">
+
     <div class="slide-menu__header">
       <h2>MENU</h2>
       <button type="button" class="slide-menu__close" id="menuClose" aria-label="메뉴 닫기">
@@ -44,12 +90,24 @@
       </button>
     </div>
 
+    <!-- LOGIN STATUS -->
+    <div class="slide-menu__auth">
+      <p class="slide-menu__auth-status" id="authStatus">로그인 상태</p>
+      <p class="slide-menu__auth-name" id="authName"></p>
+
+      <div class="slide-menu__auth-actions">
+        <a href="./login.html" id="loginLink">로그인</a>
+        <button type="button" id="logoutButton" style="display: none;">로그아웃</button>
+      </div>
+    </div>
+
+    <!-- MENU LIST -->
     <ul class="slide-menu__list">
-      <li><a href="sub/lists/lists.html">리스트페이지</a></li>
-      <li><a href="sub/detail/detail.html">상세페이지</a></li>
-      <li><a href="sub/payment/payment.html">결제페이지</a></li>
-      <li><a href="sub/payment_finish/payment_finish.html">결제완료 페이지</a></li>
+      <li><a href="./index.html">메인 페이지</a></li>
+      <li><a href="./sub/lists/lists.html">전체 메뉴</a></li>
+      <li><a href="./sub/detail/detail.html">메뉴 상세</a></li>
     </ul>
+
   </nav>
 
   <!-- HERO -->
@@ -126,6 +184,7 @@
   <!-- MENU -->
   <section class="menu-section">
     <div class="section-inner">
+
       <p class="section-subtitle">OUR MENU</p>
       <h2 class="section-title">입덕 메뉴</h2>
 
@@ -137,6 +196,7 @@
 
       <div class="menu-grid">
 
+        <!-- 메뉴 1 -->
         <a href="#" class="menu-item">
           <div class="menu-item__image">
             <img src="./img/menu-tteokbokki.jpg" alt="매콤달콤 떡볶이">
@@ -144,6 +204,7 @@
           <h3 class="menu-item__title">매콤달콤 떡볶이</h3>
         </a>
 
+        <!-- 메뉴 2 -->
         <a href="#" class="menu-item">
           <div class="menu-item__image">
             <img src="./img/menu-cheese.jpg" alt="치즈 듬뿍 떡볶이">
@@ -151,6 +212,7 @@
           <h3 class="menu-item__title">치즈 듬뿍 떡볶이</h3>
         </a>
 
+        <!-- 메뉴 3 -->
         <a href="#" class="menu-item">
           <div class="menu-item__image">
             <img src="./img/menu-soup.jpg" alt="국물 떡볶이">
@@ -158,6 +220,7 @@
           <h3 class="menu-item__title">국물 떡볶이</h3>
         </a>
 
+        <!-- 메뉴 4 -->
         <a href="#" class="menu-item">
           <div class="menu-item__image">
             <img src="./img/menu-fried.jpg" alt="모둠 튀김">
@@ -203,7 +266,7 @@
 
 </main>
 
-<!-- JavaScript: 메뉴 기능 유지 -->
+<!-- SLIDE MENU / LOGIN SCRIPT -->
 <script>
   lucide.createIcons();
 
@@ -212,6 +275,7 @@
   const slideMenu = document.getElementById("slideMenu");
   const menuOverlay = document.getElementById("menuOverlay");
 
+  // 메뉴 열기
   function openMenu() {
     slideMenu.classList.add("active");
     menuOverlay.classList.add("active");
@@ -219,6 +283,7 @@
     menuOpen.setAttribute("aria-expanded", "true");
   }
 
+  // 메뉴 닫기
   function closeMenu() {
     slideMenu.classList.remove("active");
     menuOverlay.classList.remove("active");
@@ -230,9 +295,7 @@
   menuClose.addEventListener("click", closeMenu);
   menuOverlay.addEventListener("click", closeMenu);
 
-  const menuLinks = document.querySelectorAll(".slide-menu__list a");
-
-  menuLinks.forEach(function(link) {
+  document.querySelectorAll(".slide-menu__list a").forEach(function(link) {
     link.addEventListener("click", closeMenu);
   });
 
@@ -241,7 +304,47 @@
       closeMenu();
     }
   });
+
+  // 로그인 상태 표시
+  const authStatus = document.getElementById("authStatus");
+  const authName = document.getElementById("authName");
+  const loginLink = document.getElementById("loginLink");
+  const logoutButton = document.getElementById("logoutButton");
+
+  function updateAuthMenu() {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (currentUser) {
+      authStatus.textContent = "로그인 상태";
+      authName.textContent = currentUser.name
+        ? currentUser.name + "님 환영합니다."
+        : "";
+
+      loginLink.style.display = "none";
+      logoutButton.style.display = "inline-flex";
+    } else {
+      authStatus.textContent = "로그아웃 상태";
+      authName.textContent = "";
+
+      loginLink.style.display = "inline-flex";
+      logoutButton.style.display = "none";
+    }
+  }
+
+  // 로그아웃
+  logoutButton.addEventListener("click", function() {
+    localStorage.removeItem("currentUser");
+
+    updateAuthMenu();
+    closeMenu();
+
+    alert("로그아웃되었습니다.");
+  });
+
+  updateAuthMenu();
 </script>
+
+<script src="./js/auth.js"></script>
 
 </body>
 </html>

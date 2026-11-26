@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인 | 입덕볶이</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="auth-body">
+
+  <main class="auth-page">
+    <header class="auth-header">
+      <a href="./index.html">
+        <img src="./img/logo.png" alt="입덕볶이">
+      </a>
+      <a href="./index.html" class="auth-home">메인으로</a>
+    </header>
+
+    <section class="auth-container">
+      <div class="auth-visual">
+        <p class="auth-visual__eyebrow">IPDEOK BOKKI</p>
+        <h1><span>입덕볶이</span>에<br>오신 것을 환영해요!</h1>
+        <p>로그인하고 더 다양한 혜택을 만나보세요.</p>
+        <img src="./img/recommend-best.jpg" alt="입덕볶이 대표 메뉴">
+      </div>
+
+      <div class="auth-form-area">
+        <h2>로그인</h2>
+        <p class="auth-description">입덕볶이의 더 다양한 혜택을 만나보세요!</p>
+
+        <form id="loginForm">
+          <label class="auth-label" for="loginEmail">이메일</label>
+          <input
+            type="email"
+            id="loginEmail"
+            class="auth-input"
+            placeholder="이메일을 입력해주세요"
+            required
+          >
+
+          <label class="auth-label" for="loginPassword">비밀번호</label>
+          <input
+            type="password"
+            id="loginPassword"
+            class="auth-input"
+            placeholder="비밀번호를 입력해주세요"
+            required
+          >
+
+          <p id="loginMessage" class="auth-message" aria-live="polite"></p>
+
+          <button type="submit" class="auth-submit">로그인</button>
+        </form>
+
+        <p class="auth-signup">
+          아직 회원이 아니신가요?
+          <a href="./signup.html">회원가입</a>
+        </p>
+      </div>
+    </section>
+
+    <footer class="auth-footer">
+      © 2026 입덕볶이. All rights reserved.
+    </footer>
+  </main>
+
+  <script src="./js/auth.js"></script>
+</body>
+</html>
